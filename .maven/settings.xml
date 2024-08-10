@@ -9,7 +9,8 @@
     <server>
       <id>anypoint-exchange-v3</id> 
       <username>~~~Client~~~</username>
-      <password>${CON_APP_ID}~?~${CON_APP_SEC}</password>
+      <password>${{secrets.CON_APP_ID}}~?~${{secrets.CON_APP_SEC}}</password>
     </server>
   </servers>
+  
 </settings>
