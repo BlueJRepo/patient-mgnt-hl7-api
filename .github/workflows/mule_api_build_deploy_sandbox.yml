@@ -31,18 +31,10 @@ jobs:
         java-version: 11
     - name: Build with Maven
       run: mvn -B package --settings .maven/settings.xml --file ${{ github.workspace }}/**/pom.xml -DskipMunitTests
-    - name: Relabel the artifact
-      env:
-       pkg_name: ${{ vars.pkg_name }}
+    
+    - name: Prepare OAS file for SwaggerHUB
       run: |
-        rName=$pkg_name-${GITHUB_REF##*/}-1.0.${{ github.run_number }}.jar
-        mv ${{ github.workspace }}/**/target/*.jar ${{ github.workspace }}/$pkg_name/target/$rName
-        echo "Jar file name: $rName"
-    - name: Upload artifact 
-      uses: actions/upload-artifact@v3
-      with:
-          name: artifacts
-          path: ${{ github.workspace }}/**/target/*.jar
-          retention-days: 90
+        echo "The OAS Zip file is ${{ github.workspace }}/**/target/repository/${{ vars.group_id }}/${{ vars.pkg_name }}/${{ steps.getVersion.outputs.version }}/${{ vars.pkg_name }}-${{ steps.getVersion.outputs.version }}-oas.zip
+    
         
 
