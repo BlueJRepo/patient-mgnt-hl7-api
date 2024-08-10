@@ -9,11 +9,11 @@
 	<server>
 		<id>anypoint-exchange-v3</id>
 		<username>~~~Client~~~</username>
-		
-		<password>${client.id}~?~{client.secret}</password>		
 		<!--
-		<password>9629d70361ea4525ac68c4dc251d492f~?~09Bba97ea4714a9488EA899d913278B8</password>
+		<password>${client.id}~?~{client.secret}</password>		
 		-->
+		<password>9629d70361ea4525ac68c4dc251d492f~?~09Bba97ea4714a9488EA899d913278B8</password>
+		
 	</server>
   </servers>
 </settings>
