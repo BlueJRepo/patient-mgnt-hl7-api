@@ -33,9 +33,9 @@ jobs:
       env:
         CON_APP_ID: ${{ secrets.connectedAppClientId }}
         CON_APP_SEC: ${{ secrets.connectedAppClientSecret }}      
-        nexus_username: ${{ secrets.nexus_username }}
-        nexus_password: ${{ secrets.nexus_password }}
-      run: mvn -B package --settings .maven/settings.xml --file ${{ github.workspace }}/**/pom.xml -DskipMunitTests
+        #nexus_username: ${{ secrets.nexus_username }}
+        #nexus_password: ${{ secrets.nexus_password }}
+      run: mvn -B package --settings .maven/settings.xml --file ${{ github.workspace }}/**/pom.xml -DskipMunitTests -Dclient.id="$CON_APP_ID" -Dclient.secret="$CON_APP_SEC"
     - name: Relabel the artifact
       env:
        pkg_name: ${{ vars.pkg_name }}
@@ -74,12 +74,9 @@ jobs:
       env:
         CON_APP_ID: ${{ secrets.connectedAppClientId }}
         CON_APP_SEC: ${{ secrets.connectedAppClientSecret }}
-        SECURE_KEY: ${{ secrets.secure_key }}
-        CLIENT_ID: ${{ secrets.anypoint_platform_client_id }}
-        CLIENT_SECRET: ${{ secrets.anypoint_platform_client_secret }}
-        API_ID: ${{ vars.API_ID }}
-        MULE_ENV: ${{ vars.mule_env }}
-        API_NAME: ${{ vars.api_name }}       
+        API_ID: "19729114"
+        MULE_ENV: "dev"
+        API_NAME: "my-first-api"
       run: |
         artifactName=$(ls ${{ github.workspace }}/**/target/*.jar | head -1)
         echo "artifact_Name: "$artifactName
@@ -87,8 +84,6 @@ jobs:
          -Dmule.artifact=$artifactName \
          -DconnectedAppClientId="$CON_APP_ID" \
          -DconnectedAppClientSecret="$CON_APP_SEC" \
-         -Danypoint.platform.client_id="$CLIENT_ID" \
-         -Danypoint.platform.client_secret="$CLIENT_SECRET" \
          -Dsecure.key="$SECURE_KEY" \
          -Dmule.renv="Sandbox" \
          -Dmule.env=$MULE_ENV \
