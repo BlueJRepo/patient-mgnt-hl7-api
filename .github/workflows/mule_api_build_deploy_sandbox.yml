@@ -9,7 +9,7 @@ on:
       - '.github/**'
 
 
-run-name: 'Build & Deploy in Mule Sandbox: Branch: ${{ github.ref_name }}, Run_id: ${{ github.run_id }}, Package_name: dcu-sharepoint-api-${{ github.ref_name }}-1.0.${{ github.run_number }} '
+run-name: 'Build & Deploy in Mule Sandbox: Branch: ${{ github.ref_name }}, Run_id: ${{ github.run_id }}, Package_name: my-first-api-${{ github.ref_name }}-1.0.${{ github.run_number }} '
 
 jobs:
   build:
@@ -45,43 +45,4 @@ jobs:
           path: ${{ github.workspace }}/**/target/*.jar
           retention-days: 90
         
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment: Sandbox
-    steps:    
-    - name: Checkout repo
-      uses: actions/checkout@v3
-    - name: Cache dependencies
-      uses: actions/cache@v3
-      with:
-        path: ~/.m2/repository
-        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-        restore-keys: |
-          ${{ runner.os }}-maven-
-    - name: Download the artifact
-      uses: actions/download-artifact@v3
-      with:
-        name: artifacts
-    - name: Display structure of downloaded files
-      run: ls -R
-    - name: Deploy to Sandbox    
-      env:
-        CON_APP_ID: ${{ secrets.connectedAppClientId }}
-        CON_APP_SEC: ${{ secrets.connectedAppClientSecret }}
-        API_ID: "19729114"
-        MULE_ENV: "dev"
-        API_NAME: "my-first-api"
-      run: |
-        artifactName=$(ls ${{ github.workspace }}/**/target/*.jar | head -1)
-        echo "artifact_Name: "$artifactName
-        mvn mule:deploy --settings .maven/settings.xml --file ${{ github.workspace }}/**/pom.xml -DmuleDeploy \
-         -Dmule.artifact=$artifactName \
-         -DconnectedAppClientId="$CON_APP_ID" \
-         -DconnectedAppClientSecret="$CON_APP_SEC" \
-         -Dsecure.key="$SECURE_KEY" \
-         -Dmule.renv="Sandbox" \
-         -Dmule.env=$MULE_ENV \
-         -Dapi.id=$API_ID \
-         -Dapi_name=$API_NAME \
-         -DskipMunitTests
+
