@@ -53,6 +53,7 @@
 			<classifier>raml</classifier>
 			<type>zip</type>
 		</dependency>
+<!--		
 		<dependency>
 			<groupId>3f0b8342-a74a-4d37-afe6-5f26fde6babe</groupId>
 			<artifactId>my-first-api</artifactId>
@@ -60,6 +61,7 @@
 			<classifier>aos</classifier>
 			<type>zip</type>
 		</dependency>		
+-->
 		<dependency>
 			<groupId>org.mule.modules</groupId>
 			<artifactId>mule-apikit-module</artifactId>
