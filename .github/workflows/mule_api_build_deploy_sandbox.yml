@@ -33,8 +33,11 @@ jobs:
       run: mvn -B package --settings .maven/settings.xml --file ${{ github.workspace }}/**/pom.xml -DskipMunitTests
     
     - name: Prepare OAS file for SwaggerHUB
+      uses: ./
+      id: getVersion
       run: |
-        echo "The OAS Zip file is ${{ github.workspace }}/**/target/repository${{ vars.group_id }}/${{ vars.pkg_name }}/${{ steps.getVersion.outputs.version }}/${{ vars.pkg_name }}-${{ steps.getVersion.outputs.version }}-oas.zip
+        #echo "The OAS Zip file is ${{ github.workspace }}/**/target/repository${{ vars.group_id }}/${{ vars.pkg_name }}/${{ steps.getVersion.outputs.version }}/${{ vars.pkg_name }}-${{ steps.getVersion.outputs.version }}-oas.zip
+        run: echo "The version we just got is ${{ steps.getVersion.outputs.version }}"
     
         
 
