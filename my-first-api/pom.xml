@@ -29,6 +29,38 @@
 				<artifactId>mule-maven-plugin</artifactId>
 				<version>${mule.maven.plugin.version}</version>
 				<extensions>true</extensions>
+				<configuration>
+					<cloudHubDeployment>
+						<uri>https://anypoint.mulesoft.com</uri>
+						<muleVersion>${app.runtime}</muleVersion>
+						<businessGroup>eHealth Clinical</businessGroup>
+						<connectedAppClientId>${connectedAppClientId}</connectedAppClientId>
+						<connectedAppClientSecret>${connectedAppClientSecret}</connectedAppClientSecret>
+						<connectedAppGrantType>client_credentials</connectedAppGrantType>
+						<applicationName>${api_name}</applicationName>
+						<environment>${mule.renv}</environment>
+						<workerType>MICRO</workerType>
+						<region>ap-southeast-2</region>
+						<workers>1</workers>
+						<objectStoreV2>false</objectStoreV2>
+						<skipDeploymentVerification>true</skipDeploymentVerification>
+						<!-- Start: SECURED PROPERTIES CI/CD -->
+						<properties>
+							<secure.key>${secure.key}</secure.key>
+							<mule.env>${mule.env}</mule.env>
+							<api.id>${api.id}</api.id>
+							<captcha.enable>false</captcha.enable>
+							<anypoint.platform.client_id> ${anypoint.platform.client_id}</anypoint.platform.client_id>
+							<anypoint.platform.client_secret> ${anypoint.platform.client_secret}</anypoint.platform.client_secret>
+							<anypoint.platform.config.analytics.agent.enabled>true</anypoint.platform.config.analytics.agent.enabled>
+							<anypoint.platform.base_uri>https://anypoint.mulesoft.com/</anypoint.platform.base_uri>
+							<anypoint.platform.analytics_base_uri>https://anypoint.mulesoft.com/</anypoint.platform.analytics_base_uri>
+						</properties>
+						<!-- End: SECURED PROPERTIES CI/CD -->
+					</cloudHubDeployment>
+					<classifier>mule-application</classifier>
+				</configuration>
+				
 			</plugin>
 		</plugins>
 	</build>
