@@ -30,11 +30,7 @@ jobs:
         distribution: 'zulu'
         java-version: 11
     - name: Build with Maven
-      env:
-        CON_APP_ID: ${{vars.CONN_APP_ID}}
-        CON_APP_SEC: ${{vars.CONN_APP_SEC}}
-      run: mvn -B package --settings .maven/settings.xml --file ${{ github.workspace }}/**/pom.xml -DskipMunitTests \
-            -Dclient.id="$CON_APP_ID" -Dclient.secret="$CON_APP_SEC"
+      run: mvn -B package --settings .maven/settings.xml --file ${{ github.workspace }}/**/pom.xml -DskipMunitTests 
             
     - name: get-pom-version
       id: pom-version
