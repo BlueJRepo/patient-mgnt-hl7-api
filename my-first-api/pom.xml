@@ -85,7 +85,6 @@
 			<layout>default</layout>
 		</repository>		
 	</repositories>
-	
 	<pluginRepositories>
 		<pluginRepository>
 			<id>mulesoft-releases</id>
@@ -97,7 +96,6 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
-	
 	<distributionManagement>
 	    <repository>
 	        <id>anypoint-exchange-v3</id>
