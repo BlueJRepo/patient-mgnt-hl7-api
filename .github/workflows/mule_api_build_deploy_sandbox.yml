@@ -34,7 +34,7 @@ jobs:
     
     - name: Prepare OAS file for SwaggerHUB
       run: |
-        echo "The OAS Zip file is ${{ github.workspace }}/**/target/repository/${{ vars.group_id }}/${{ vars.pkg_name }}/${{ steps.getVersion.outputs.version }}/${{ vars.pkg_name }}-${{ steps.getVersion.outputs.version }}-oas.zip
+        echo "The OAS Zip file is ${{ github.workspace }}/**/target/repository${{ vars.group_id }}/${{ vars.pkg_name }}/${{ steps.getVersion.outputs.version }}/${{ vars.pkg_name }}-${{ steps.getVersion.outputs.version }}-oas.zip
     
         
 
