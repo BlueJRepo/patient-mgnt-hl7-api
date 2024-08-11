@@ -72,7 +72,7 @@ jobs:
       run: mv api.json api.yaml      
     - name: Upload OAS file to SwaggerHUB
       env: 
-        SWAGGER_HUB_API_KEY: ${{ secret.SWAGGERHUBAPIKEY }}
+        SWAGGER_HUB_API_KEY: ${{ secrets.SWAGGERHUBAPIKEY }}
       run: |
         curl -X POST "https://api.swaggerhub.com/apis/OWNER/API_TO_CREATE_OR_UPDATE" \
         -H "Authorization: $SWAGGER_HUB_API_KEY" \
