@@ -12,6 +12,42 @@ on:
 run-name: 'Build & Deploy in Mule Sandbox: Branch: ${{ github.ref_name }}, Run_id: ${{ github.run_id }}, Package_name: my-first-api-${{ github.ref_name }}-1.0.${{ github.run_number }} '
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v3
+    - name: Cache dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.m2/repository
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+        restore-keys: |
+          ${{ runner.os }}-maven-
+    - name: Set up JDK
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'zulu'
+        java-version: 11
+    - name: Build with Maven
+      env:
+        CON_APP_ID: ${{ secrets.connectedAppClientId }}
+        CON_APP_SEC: ${{ secrets.connectedAppClientSecret }}      
+      run: mvn -B package --settings .maven/settings.xml --file ${{ github.workspace }}/**/pom.xml -DskipMunitTests -Dclient.id="$CON_APP_ID" -Dclient.secret="$CON_APP_SEC"
+    - name: Relabel the artifact
+      env:
+       pkg_name: ${{ vars.pkg_name }}
+      run: |
+        rName=$pkg_name-${GITHUB_REF##*/}-1.0.${{ github.run_number }}.jar
+        mv ${{ github.workspace }}/**/target/*.jar ${{ github.workspace }}/$pkg_name/target/$rName
+        echo "Jar file name: $rName"
+    - name: Upload artifact 
+      uses: actions/upload-artifact@v3
+      with:
+          name: artifacts
+          path: ${{ github.workspace }}/**/target/*.jar
+          retention-days: 90
+
   swaggerUpload:
     runs-on: ubuntu-latest
     steps:
