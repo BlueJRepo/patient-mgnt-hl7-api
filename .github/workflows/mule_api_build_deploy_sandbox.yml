@@ -32,11 +32,14 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --settings .maven/settings.xml --file ${{ github.workspace }}/**/pom.xml -DskipMunitTests 
             
-    - name: get-pom-version
-      id: pom-version
-      uses: PERES-Richard/maven-get-version-action@v3.0.0    
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Get maven project version from pom
+      id: get-mvn-version
+      uses: ./
       with:
-        path: ./${{vars.pkg_name}}
-    - name: Print Maven POM project version
-      run: echo "version = ${{ steps.pom-version.outputs.version }}"
+        path: ${{vars.pkg_name}}
+        args: '-DskipTests'
+    - name: Print output version
+      run: echo "Maven project version is ${{ steps.get-mvn-version.outputs.version }}"
     
