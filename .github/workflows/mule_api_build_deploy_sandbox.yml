@@ -35,7 +35,8 @@ jobs:
     - name: get-pom-version
       id: pom-version
       uses: PERES-Richard/maven-get-version-action@v3.0.0    
-        
+      with:
+        path: ./${{vars.pkg_name}}
     - name: Print Maven POM project version
-      run: ls -al
+      run: echo "version = ${{ steps.pom-version.outputs.version }}"
     
