@@ -31,10 +31,30 @@ jobs:
         java-version: 11
     - name: Build with Maven
       run: mvn -B package --settings .maven/settings.xml --file ${{ github.workspace }}/**/pom.xml -DskipMunitTests 
-            
+
+  swaggerUpload:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: Sandbox
+    steps:    
+    - name: Checkout repo
+      uses: actions/checkout@v3
+    - name: Cache dependencies
+      uses: actions/cache@v3
+    - name: Download the artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: artifacts
+    - name: Display structure of downloaded files
+      run: ls -R
     - name: Get Version
       uses: ./my-first-api
       id: getVersion
     - name: Print the version
       run: echo "The version we just got is ${{ steps.getVersion.outputs.version }}"
+      
+#artifactName=$(ls ${{ github.workspace }}/**/target/*.jar | head -1)
+#echo "artifact_Name: "$artifactName
+#mvn mule:deploy --settings .maven/settings.xml --file ${{ github.workspace }}/**/pom.xml -DmuleDeploy \
+
     
