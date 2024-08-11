@@ -30,7 +30,7 @@ jobs:
         distribution: 'zulu'
         java-version: 11
     - name: Extract OAS file
-      run: unzip ~/.m2/repository/${{vars.businessGroupId}}/${{vars.pkg_name}}/${{vars.apiVersion}}/${{vars.pkg_name}}-${{vars.apiVersion}}-oas.zip    
+      run: unzip ~/.m2/repository/${{vars.business_group_id}}/${{vars.pkg_name}}/${{vars.api_version}}/${{vars.pkg_name}}-${{vars.api_version}}-oas.zip    
     - name: Check OAS file
       run: ls -al
       
