@@ -24,10 +24,6 @@ jobs:
         key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
         restore-keys: |
           ${{ runner.os }}-maven-
-    - name: Download the artifact
-      uses: actions/download-artifact@v3
-      with:
-        name: artifacts
     - name: Display structure of downloaded files
       run: ls -R          
     - name: Set up JDK
