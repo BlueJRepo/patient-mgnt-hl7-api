@@ -37,5 +37,5 @@ jobs:
       uses: PERES-Richard/maven-get-version-action@v3.0.0    
         
     - name: Print Maven POM project version
-      run: echo "ls -al"
+      run: ls -al
     
