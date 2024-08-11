@@ -5,21 +5,23 @@
     <pluginGroup>org.mule.tools</pluginGroup>
   </pluginGroups>
 
-  <servers>
-    <!--
-		<server>
-		  <id>MuleRepository</id>
-		  <username>${nexus_username}</username>
-		  <password>${nexus_password}</password>
-		</server>
-	-->
-	
-	<server>
-		<id>Repository</id>
-		<username>~~~Client~~~</username>
-		<password>${client.id}?{client.secret}</password>
-	</server>
-	
+  <servers>	
+    
+    <server>
+      <id>repository</id> 
+      <username>${nexus.nexus_username}</username>
+      <password>${nexus.nexus_password}</password>
+    </server>   
+    
+    <server>
+      <id>anypoint-exchange-v3</id> 
+      <username>~~~Client~~~</username>
+      <password>${CON_APP_ID}~?~${CON_APP_SEC}</password>
+      <!--
+      <password>9629d70361ea4525ac68c4dc251d492f~?~09Bba97ea4714a9488EA899d913278B8</password>
+      -->
+    </server>
+    
   </servers>
-
+  
 </settings>

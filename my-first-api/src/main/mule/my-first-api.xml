@@ -3,7 +3,7 @@
     <http:listener-config name="my-first-api-httpListenerConfig">
         <http:listener-connection host="0.0.0.0" port="8081" />
     </http:listener-config>
-    <apikit:config name="my-first-api-config" api="resource::3f0b8342-a74a-4d37-afe6-5f26fde6babe:my-first-api:1.0.5:raml:zip:my-first-api.raml" outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" />
+    <apikit:config name="my-first-api-config" api="resource::3f0b8342-a74a-4d37-afe6-5f26fde6babe:my-first-api:1.0.8:raml:zip:my-first-api.raml" outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" />
     <flow name="my-first-api-main">
         <http:listener config-ref="my-first-api-httpListenerConfig" path="/api/*">
             <http:response statusCode="#[vars.httpStatus default 200]">
