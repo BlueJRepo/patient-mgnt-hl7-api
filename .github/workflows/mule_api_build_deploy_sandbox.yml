@@ -68,6 +68,13 @@ jobs:
         java-version: 11
     - name: Extract OAS file
       run: unzip ~/.m2/repository/${{vars.business_group_id}}/${{vars.pkg_name}}/${{vars.api_version}}/${{vars.pkg_name}}-${{vars.api_version}}-oas.zip    
-    - name: Check OAS file
-      run: ls -al
+    - name: Rename OAS file
+      run: mv api.json api.yaml      
+    - name: Upload OAS file to SwaggerHUB
+      env: 
+        SWAGGER_HUB_API_KEY: ${{ secret.SWAGGERHUBAPIKEY }}
+      run: |
+        curl -X POST "https://api.swaggerhub.com/apis/OWNER/API_TO_CREATE_OR_UPDATE" \
+        -H "Authorization: $SWAGGER_HUB_API_KEY" \
+        -H "Content-Type: application/yaml" --data-binary api.yaml
       
