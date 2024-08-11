@@ -34,7 +34,7 @@ jobs:
             
     - name: get-pom-version
       id: pom-version
-
+      uses: ./
     - name: Print Maven POM project version
       run: echo "ls -al"
     
