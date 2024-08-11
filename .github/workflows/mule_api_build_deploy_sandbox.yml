@@ -49,6 +49,7 @@ jobs:
           retention-days: 90
 
   swaggerUpload:
+    needs: build
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repo
