@@ -7,6 +7,11 @@
 
   <servers>	
     <server>
+      <id>repository</id> 
+      <username>${nexus.nexus_username}</username>
+      <password>${nexus.nexus_password}</password>
+    </server>    
+    <server>
       <id>anypoint-exchange-v3</id> 
       <username>~~~Client~~~</username>
       <password>${CON_APP_ID}~?~${CON_APP_SEC}</password>
