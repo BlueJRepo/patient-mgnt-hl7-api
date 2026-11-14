@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
  
 @Component
-public class Hl7ADTListenerOverMLLP extends RouteBuilder {
+public class Hl7ListenerOverMLLP extends RouteBuilder {
  
     @Value("${hl7.listener.host}")
     private String host;
@@ -30,7 +30,7 @@ public class Hl7ADTListenerOverMLLP extends RouteBuilder {
 	        .unmarshal(hl7DataFormat)
         
             // 2. Route payload to our custom processor bean
-            .to("bean:hl7ADTMessageService?method=process")
+            .to("bean:hl7MessageService?method=process")
  
             // 3. Resulting ACK message back to raw bytes
             .log("Message processed successfully. Auto-ACK transmitted back.");

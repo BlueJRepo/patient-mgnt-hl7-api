@@ -6,8 +6,8 @@ import ca.uhn.hl7v2.model.Message;
 import ca.uhn.hl7v2.model.v25.message.ADT_A01; // Assuming v2.5 structure
 import ca.uhn.hl7v2.model.v25.segment.PID;
  
-@Service("hl7ADTMessageService")
-public class Hl7ADTMessageService {
+@Service("hl7MessageService")
+public class Hl7MessageService {
  
 	//@Autowired
 	//private PatientRepository  patientRepository;
