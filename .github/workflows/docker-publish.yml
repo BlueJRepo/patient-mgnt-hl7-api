@@ -13,8 +13,7 @@ jobs:
   build-and-push:
     runs-on: ubuntu-latest
     env:
-      #DOCKER_IMAGE_NAME: ${{ github.repository_owner }}/patient-mgnt-hl7-api
-      DOCKER_IMAGE_NAME: mulesie/patient-mgnt-hl7-api
+      DOCKER_IMAGE_NAME: ${{ github.repository_owner }}/patient-mgnt-hl7-api
       DOCKER_IMAGE_TAG_BUILD: ${{ github.run_number }}
       
     outputs:
