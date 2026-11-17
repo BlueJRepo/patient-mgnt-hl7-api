@@ -16,7 +16,7 @@ jobs:
       #DOCKER_IMAGE_NAME: ${{ github.repository_owner }}/patient-mgnt-hl7-api
       DOCKER_IMAGE_NAME: mulesie/patient-mgnt-hl7-api
       #DOCKER_IMAGE_TAG_BUILD: ${{ github.run_number }}
-      DOCKER_IMAGE_TAG_BUILD: ${{ GITHUB_SHA::7 }}
+      DOCKER_IMAGE_TAG_BUILD: ${GITHUB_SHA::7}
 
     outputs:
       docker_tag: ${{ env.DOCKER_IMAGE_TAG_BUILD }}
