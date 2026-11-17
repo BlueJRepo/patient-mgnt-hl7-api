@@ -15,9 +15,8 @@ jobs:
     env:
       #DOCKER_IMAGE_NAME: ${{ github.repository_owner }}/patient-mgnt-hl7-api
       DOCKER_IMAGE_NAME: mulesie/patient-mgnt-hl7-api
-      #DOCKER_IMAGE_TAG_BUILD: ${{ github.run_number }}
-      DOCKER_IMAGE_TAG_BUILD: ${GITHUB_SHA::7}
-
+      DOCKER_IMAGE_TAG_BUILD: ${{ github.run_number }}
+      
     outputs:
       docker_tag: ${{ env.DOCKER_IMAGE_TAG_BUILD }}
       
@@ -47,7 +46,7 @@ jobs:
           images: ${{ env.DOCKER_IMAGE_NAME }}
           tags: |
             type=sha
-            type=raw,value=latest,enable={{is_default_branch}}
+            type=raw,value=${{ env.DOCKER_IMAGE_TAG_BUILD }},enable={{is_default_branch}}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
