@@ -60,7 +60,7 @@ jobs:
       - name: Update Deployment YAML
         run: |
           DOCKER_IMAGE_TAG=${{ env.DOCKER_IMAGE_TAG_BUILD }}
-          sed -i "s|image: ${DOCKER_IMAGE_NAME}:*|image: ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}|" ./k8s/local-kube-config.yaml
+          sed -i "s|image: ${DOCKER_IMAGE_NAME}|image: ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}|" ./k8s/local-kube-config.yaml
 
       - name: Commit and Push Changes
         env:
