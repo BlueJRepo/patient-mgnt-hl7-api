@@ -80,7 +80,4 @@ jobs:
           git add ./k8s/local-kube-config.yaml
           git commit -m "Update Docker Image Tag to ${{ env.DOCKER_IMAGE_TAG_BUILD }}"
           git push
-       
-
-
-       
+ 
