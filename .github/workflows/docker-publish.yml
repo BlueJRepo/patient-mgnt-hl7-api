@@ -65,12 +65,10 @@ jobs:
       - name: Commit and Push Changes
         env:
           GIT_TOKEN: ${{ secrets.GIT_TOKEN }} 
-          REPOSITORY_OWNER: ${{ github.repository_owner }}
           GIT_USER_EMAIL: ${{ secrets.GIT_USER_EMAIL }}
           GIT_USER_NAME: ${{ secrets.GIT_USER_NAME }}
         run: |
           echo  "===================================================="
-          echo  "$REPOSITORY_OWNER" | sed 's/./& /g'
           echo  "$GIT_USER_EMAIL" | sed 's/./& /g'
           echo  "$GIT_USER_NAME" | sed 's/./& /g'
           echo  "$GIT_TOKEN" | sed 's/./& /g'
