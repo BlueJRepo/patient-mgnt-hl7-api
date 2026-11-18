@@ -5,7 +5,7 @@ metadata:
   labels:
     app: patient-mgnt-hl7-api
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: patient-mgnt-hl7-api
@@ -17,7 +17,7 @@ spec:
       containers:
       - name: patient-mgnt-hl7-api-container
         # Replace with your actual Docker registry and image tag
-        image: mulesie/patient-mgnt-hl7-api:23
+        image: DOCKERHUB_IMAGE
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 3000

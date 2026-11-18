@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: patient-mgnt-hl7-api-deployment
+  labels:
+    app: patient-mgnt-hl7-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: patient-mgnt-hl7-api
+  template:
+    metadata:
+      labels:
+        app: patient-mgnt-hl7-api
+    spec:
+      containers:
+      - name: patient-mgnt-hl7-api-container
+        # Replace with your actual Docker registry and image tag
+        image: ECR_DOCKER_IMAGE_ARN
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3000
+        # Resource management to ensure cluster stability
+        resources:
+          limits:
+            cpu: "1"
+            memory: "512Mi"
+          requests:
+            cpu: "500m"
+            memory: "256Mi"
+        # Environment variables for Spring Boot config (optional)
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: "local"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: patient-mgnt-hl7-api-deployment
+spec:
+  #type: ClusterIP      # Use LoadBalancer instead if deploying to cloud (AWS, GCP, Azure)
+  type: LoadBalancer # Change from ClusterIP to LoadBalancer
+  #type: NodePort # or LoadBalancer for Docker Desktop
+  selector:
+    app: patient-mgnt-hl7-api
+  ports:
+    - protocol: TCP
+      port: 4000         # Port exposed outside the cluster
+      targetPort: 3000 # Internal port your Spring Boot app listens on
+      #nodePort: 30080  # If using NodePort
