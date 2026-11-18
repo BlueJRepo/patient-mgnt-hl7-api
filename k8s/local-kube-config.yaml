@@ -17,7 +17,7 @@ spec:
       containers:
       - name: patient-mgnt-hl7-api-container
         # Replace with your actual Docker registry and image tag
-        image: mulesie/patient-mgnt-hl7-api:41latest
+        image: mulesie/patient-mgnt-hl7-api
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 3000
