@@ -17,7 +17,7 @@ spec:
       containers:
       - name: patient-mgnt-hl7-api-container
         # Replace with your actual Docker registry and image tag
-        image: DOCKERHUB_IMAGE
+        image: DOCKER_HUB_IMAGE
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 3000
