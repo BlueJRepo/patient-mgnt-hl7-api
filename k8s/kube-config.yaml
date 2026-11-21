@@ -37,7 +37,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: patient-mgnt-hl7-api-deployment
+  name: patient-mgnt-hl7-api-service
 spec:
   #type: ClusterIP      # Use LoadBalancer instead if deploying to cloud (AWS, GCP, Azure)
   type: LoadBalancer # Change from ClusterIP to LoadBalancer
